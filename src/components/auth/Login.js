@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import styles from "./Login.module.css";
 import { useDispatch } from "react-redux";
-import { loginUserAction } from "../users/userSlice";
+import { loginUserAction } from "./userSlice";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,6 +12,7 @@ const Login = () => {
     userName: "",
     password: "",
   });
+  const [err, setErr] = useState(null);
   const regesteredUserData = {
     userName: "user1",
     password: "12345678",
@@ -26,10 +27,12 @@ const Login = () => {
       userInfo.userName == regesteredUserData.userName &&
       userInfo.password == regesteredUserData.password
     ) {
+      setErr(null);
       dispatch(loginUserAction(regesteredUserData));
       navigate("/");
     } else {
       console.log("login faild");
+      setErr("username or password wrong");
     }
   };
   return (
@@ -56,6 +59,7 @@ const Login = () => {
         <div className={styles.loginBtn} onClick={loginHandler}>
           login
         </div>
+        {err && <span style={{ color: "red" }}>{err}</span>}
       </form>
     </Container>
   );

@@ -4,7 +4,7 @@ import { selectAllPosts } from "../posts/postsSlice";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import { logOutUserAction, selectUser } from "../users/userSlice";
+import { logOutUserAction, selectUser } from "../auth/userSlice";
 
 const Header = () => {
   const posts = useSelector(selectAllPosts);

@@ -17,7 +17,6 @@ const PostList = () => {
     dispatch(fetchPosts(start));
   }, [searchValue]);
   const posts = useSelector(selectAllPosts);
-
   const renderedPosts = posts.postList.slice(start, start + 12).map((post) => (
     <article key={post.id}>
       <PostCard data={post} />
@@ -26,26 +25,34 @@ const PostList = () => {
   return (
     <Container className="mb-5">
       <h2>Posts</h2>
-      <div className={styles.searchBox}>
-        <input
-          type="text"
-          value={searchValue}
-          placeholder="search something ..."
-          onChange={(e) => setSearchValue(e.target.value)}
-        />
-        <div onClick={() => dispatch(searchPostsAction(searchValue))}>
-          search
-        </div>
-      </div>
-      <div className={styles.postsContainer}>{renderedPosts}</div>
-      <Pagination
-        currentPage={parseInt(start) / 12 + 1}
-        pageSize={12}
-        totalCount={posts.postList.length}
-        onPageChange={(num) => {
-          setStart((num - 1) * 12);
-        }}
-      />
+      {posts.fetchingPosts ? (
+        <div>Loading...</div>
+      ) : posts.errorMessage == null ? (
+        <>
+          <div className={styles.searchBox}>
+            <input
+              type="text"
+              value={searchValue}
+              placeholder="search something ..."
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <div onClick={() => dispatch(searchPostsAction(searchValue))}>
+              search
+            </div>
+          </div>
+          <div className={styles.postsContainer}>{renderedPosts}</div>
+          <Pagination
+            currentPage={parseInt(start) / 12 + 1}
+            pageSize={12}
+            totalCount={posts.postList.length}
+            onPageChange={(num) => {
+              setStart((num - 1) * 12);
+            }}
+          />
+        </>
+      ) : (
+        <div>{posts.errorMessage}</div>
+      )}
     </Container>
   );
 };
