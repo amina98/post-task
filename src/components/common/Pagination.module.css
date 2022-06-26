@@ -1,0 +1,25 @@
+.paginationContntainer{
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 0 0 !important;
+    padding: 0 !important;}
+.paginationContntainer li{
+        list-style: none;}
+.paginationItem,.paginationActiveItem,.arrowLeft, .arrowRight{
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;}
+.paginationActiveItem{
+background-color: #59C2D0;
+    color: #fff;
+}
+    
+.arrowLeft, .arrowRight{
+    border: 1px solid #707070;
+}
+    
+

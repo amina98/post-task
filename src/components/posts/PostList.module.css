@@ -1,0 +1,15 @@
+.postsContainer{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
+}
+.searchBox{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.searchBox div{
+    background-color: blue;
+    color: #fff;
+    padding: 0 20px
+}
